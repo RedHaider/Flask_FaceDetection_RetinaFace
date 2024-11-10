@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection Video Feed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        /* Set up the background image for the entire page */
+        body {
+            background-color: rgba(29, 16, 16, 0.85);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+        }
+        #video-feed {
+            max-width: 60%;
+            border: 4px solid #007bff;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+        }
+        .btn-custom {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+
+        .container h1 {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Wrapper to center the container -->
+    <div class="container-wrapper">
+        <div class="container mt-5">
+            <h1>Real-Time Face Detection</h1>
+            <!-- Display video feed using img tag to receive from Flask -->
+            <div class="row justify-content-center align-items-right">
+                    <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video feed" class="img-fluid">
+            </div>
+            <div class="mt-4">
+                <button id="toggleButton" class="btn btn-primary btn-custom" onclick="toggleVideo()">Start Video</button>
+            </div>
+            <div class="footer">
+                <p>Powered by EIT | Designed for Real-Time Face Detection</p>
+            </div>
+        </div>
+
+    <script>
+        let videoFeed = document.getElementById("video-feed");
+        let toggleButton = document.getElementById("toggleButton");
+
+        function toggleVideo() {
+            if (videoFeed.style.display === "none") {
+                // Show the video feed
+                videoFeed.style.display = "block";
+                toggleButton.innerText = "Stop Video";
+            } else {
+                // Hide the video feed
+                videoFeed.style.display = "none";
+                toggleButton.innerText = "Start Video";
+            }
+        }
+    </script>
+</body>
+</html>
